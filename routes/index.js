@@ -99,43 +99,6 @@ request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json
     for (var i in availableList) {
         console.log(availableList[i].storeName + " :" + availableList[i].phoneName + ": " + availableList[i].url + "\n");
     }
-
-    ////var r631 = JSON.parse(body).R631;
-    //var r631 = JSON.parse(body).R039;
-    //var r631HasInvArr = [];
-    //for(var r631attr in r631){
-    //    if (r631[r631attr]=="ALL") {
-    //        var r631ModelNumber = r631attr.substring(0, r631attr.length - 2);
-    //        if (r631ModelNumber in modelToName) {
-    //            r631HasInvArr.push(r631ModelNumber);
-    //        }
-    //    }
-    //}
-    //console.log("Manchester\n" + r631HasInvArr);
-    //
-    //var r027 = JSON.parse(body).R027;
-    //var r027HasInvArr = [];
-    //for(var r027attr in r027){
-    //    if (r027[r027attr]=="ALL") {
-    //        var r027ModelNumber = r027attr.substring(0, r027attr.length - 2);
-    //        if (r027ModelNumber in modelToName) {
-    //            r027HasInvArr.push(r027ModelNumber);
-    //        }
-    //    }
-    //}
-    //console.log("Salem\n" + r027HasInvArr);
-    //
-    //var r354 = JSON.parse(body).R354;
-    //var r354HasInvArr = [];
-    //for(var r354attr in r354){
-    //    if (r354[r354attr]=="ALL") {
-    //        var r354ModelNumber = r354attr.substring(0, r354attr.length - 2);
-    //        if (r354ModelNumber in modelToName) {
-    //            r354HasInvArr.push(r354ModelNumber);
-    //        }
-    //    }
-    //}
-    //console.log("Nashua\n" + r354HasInvArr);
 });
 
 module.exports = router;
