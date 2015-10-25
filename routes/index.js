@@ -73,32 +73,30 @@ var storeIdToStoreName = {
     "R039": "Valley Fair"
 };
 
+var availableList = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Xiaolong' });
-});
-
-request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json", function(error,response,body){
-
-    for (var i in storeIdArr) {
-        var storeId = storeIdArr[i];
-        var data = JSON.parse(body)[storeId];
-        var availableList = [];
-        for(var modelNumber in data){
-            if (data[modelNumber]=="ALL") {
-                var stripedModelNumber = modelNumber.substring(0, modelNumber.length - 2);
-                if (stripedModelNumber in modelToName) {
-                    var filteredPhone = new phone.Phone(stripedModelNumber,modelToName[stripedModelNumber],storeIdToStoreName[storeId],storeId);
-                    availableList.push(filteredPhone);
+        request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json", function(error,response,body){
+            for (var i in storeIdArr) {
+                var storeId = storeIdArr[i];
+                var data = JSON.parse(body)[storeId];
+                for(var modelNumber in data){
+                    if (data[modelNumber]=="ALL") {
+                        var stripedModelNumber = modelNumber.substring(0, modelNumber.length - 2);
+                        if (stripedModelNumber in modelToName) {
+                            var filteredPhone = new phone.Phone(stripedModelNumber,modelToName[stripedModelNumber],storeIdToStoreName[storeId],storeId);
+                            availableList.push(filteredPhone);
+                        }
+                    }
                 }
             }
-        }
-    }
 
-    for (var i in availableList) {
-        console.log(availableList[i].storeName + " :" + availableList[i].phoneName + ": " + availableList[i].url + "\n");
-    }
+            for (var i in availableList) {
+                console.log(availableList[i].storeName + ": " + availableList[i].phoneName + ": " + availableList[i].url + "\n");
+            }
+            res.render('index', { data: availableList })
+        });
 });
 
 module.exports = router;

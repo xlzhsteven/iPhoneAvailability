@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1.
+        Available phone list in the format of Store Name: Phone Name
+    ul
+        each phone in data
+            li
+                a(href="#{phone.url}") #{phone.storeName + ": " + phone.phoneName}
