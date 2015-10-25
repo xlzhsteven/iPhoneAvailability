@@ -65,12 +65,12 @@ var modelToName = {
     "MKW82LL": "SIM-free Rose Gold 16G"
 };
 
-var storeIdArr = ["R631", "R027", "R354", "R039"];
+var storeIdArr = ["R631", "R027", "R354", "R198"];
 var storeIdToStoreName = {
     "R631": "Manchester",
     "R027": "Salem",
     "R354": "Nashua",
-    "R039": "Valley Fair"
+    "R198": "Royal Hawaiian"
 };
 
 /* GET home page. */

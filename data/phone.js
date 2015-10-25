@@ -8,7 +8,7 @@ function Phone(modelNumber, phoneName, storeName, storeId) {
     this.storeId = storeId;
     this.phoneName = phoneName;
     this.storeName = storeName;
-    this.url = "https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability?channel=1&returnURL=http%3A%2F%2Fwww.apple.com%2Fshop%2Fbuy-iphone%2Fiphone6s%2F5.5-inch-display-64gb-gold-verizon&store=R039&partNumber=" + modelNumber + "%2FA";
+    this.url = "https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability?channel=1&returnURL=http%3A%2F%2Fwww.apple.com%2Fshop%2Fbuy-iphone%2Fiphone6s%2F5.5-inch-display-64gb-gold-verizon&store=" + storeId + "&partNumber=" + modelNumber + "%2FA";
     //this.url = "":
 }
 
