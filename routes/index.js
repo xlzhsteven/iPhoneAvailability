@@ -73,11 +73,10 @@ var storeIdToStoreName = {
     "R039": "Valley Fair"
 };
 
-var availableList = [];
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-        request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json", function(error,response,body){
+    var availableList = [];
+    request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json", function(error,response,body){
             for (var i in storeIdArr) {
                 var storeId = storeIdArr[i];
                 var data = JSON.parse(body)[storeId];
