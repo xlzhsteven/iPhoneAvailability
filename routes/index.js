@@ -65,17 +65,19 @@ var modelToName = {
     "MKW82LL": "SIM-free Rose Gold 16G"
 };
 
-var storeIdArr = ["R631", "R027", "R354", "R198"];
+var storeIdArr = ["R631", "R027", "R354"];
 var storeIdToStoreName = {
     "R631": "Manchester",
     "R027": "Salem",
-    "R354": "Nashua",
-    "R198": "Royal Hawaiian"
+    "R354": "Nashua"
 };
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var availableList = [];
+    var sixtyFourList = [];
+    var oneTwentyEightList = [];
+    var sixteenList = [];
     request("https://reserve.cdn-apple.com/US/en_US/reserve/iPhone/availability.json", function(error,response,body){
             for (var i in storeIdArr) {
                 var storeId = storeIdArr[i];
@@ -85,10 +87,27 @@ router.get('/', function(req, res, next) {
                         var stripedModelNumber = modelNumber.substring(0, modelNumber.length - 2);
                         if (stripedModelNumber in modelToName) {
                             var filteredPhone = new phone.Phone(stripedModelNumber,modelToName[stripedModelNumber],storeIdToStoreName[storeId],storeId);
-                            availableList.push(filteredPhone);
+                            if (filteredPhone.phoneName.indexOf("64G") > -1) {
+                                sixtyFourList.push(filteredPhone);
+                            }
+                            if (filteredPhone.phoneName.indexOf("128G") > -1) {
+                                oneTwentyEightList.push(filteredPhone);
+                            }
+                            if (filteredPhone.phoneName.indexOf("16G") > -1) {
+                                sixteenList.push(filteredPhone);
+                            }
                         }
                     }
                 }
+            }
+            for (var sixtyFourPhone in sixtyFourList) {
+                availableList.push(sixtyFourList[sixtyFourPhone]);
+            }
+            for (var oneTwentyEightPhone in oneTwentyEightList) {
+                availableList.push(oneTwentyEightList[oneTwentyEightPhone]);
+            }
+            for (var sixteenPhone in sixteenList) {
+                availableList.push(sixteenList[sixteenPhone]);
             }
 
             for (var i in availableList) {
